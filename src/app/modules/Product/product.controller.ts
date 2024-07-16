@@ -21,6 +21,24 @@ const getAllProducts:RequestHandler=async(req:Request,res:Response)=>{
     if(product?.sort =='high' as string){
         sorted={price:-1}
     }
+    if(product?.max  =="NaN" || product?.min  =="NaN" ){
+        filter={...filter,$and:[
+            {price:{$lt:Number(1000)}},
+            {price:{$gt:Number(0)}
+        }
+        ]}
+        
+    }
+
+
+    else if(product?.max  as string || product?.min  as string ){
+        filter={...filter,$and:[
+            {price:{$lt:Number(product.max)}},
+            {price:{$gt:Number(product.min)}
+        }
+        ]}
+        
+    }
 
 
     const result=await ProductsService.getAllProductsFromDb(filter,sorted)
