@@ -4,7 +4,7 @@ import { ProductsService } from "./product.service";
 const getAllProducts:RequestHandler=async(req:Request,res:Response)=>{
     const product  = req.query;
     // const product=products as Record<string,unknown>
-    console.log(req.query,"product")
+    // console.log(req.query,"product")
     let filter={}
     let sorted: Record<string, 1|-1>={price:1}
     if(product?.searchValue as string){
@@ -48,16 +48,27 @@ const getAllProducts:RequestHandler=async(req:Request,res:Response)=>{
 }
 const getSingleProducts:RequestHandler=async(req:Request,res:Response)=>{
     const {productName}=(req.params)
-    console.log(productName)
+    // console.log(productName)
 
     const result=await ProductsService.getSingleProductsFromDb(productName)
-    console.log(result,"from server single prod")
+    // console.log(result,"from server single prod")
     res.send({success:true,data:result})
 
 
 }
 
+const updateProductsQuantity:RequestHandler=async(req:Request,res:Response)=>{
+    // console.log(req.body,"from controller")
+    const result=await ProductsService.updateProductsQuantityDb(req.body)
+    res.send({success:true,data:result})
+    
+
+}
+
+
+
 export const ProductsController={
     getAllProducts,
-    getSingleProducts
+    getSingleProducts,
+    updateProductsQuantity
 }
