@@ -4,7 +4,7 @@ import { Order, Product } from './user.interface';
 const productSchema = new mongoose.Schema<Product>(
   {
     _id: {
-      type: Schema.Types.ObjectId,
+      type: String,
       required: true,
      
     },
@@ -28,19 +28,19 @@ const orderSchema = new mongoose.Schema<Order>(
   {
     customer: {
       type: String,
-      required: true
+    //   required: true
     },
     phone: {
       type: String,
-      required: true
+    //   required: true
     },
     address: {
       type: String,
-      required: true
+    //   required: true
     },
     payment: {
       type: String,
-      required: true
+    //   required: true
     },
     product: {
       type: [productSchema],

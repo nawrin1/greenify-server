@@ -63,12 +63,58 @@ const updateProductsQuantity:RequestHandler=async(req:Request,res:Response)=>{
     res.send({success:true,data:result})
     
 
+    
+}
+
+const deleteProduct:RequestHandler=async(req:Request,res:Response)=>{
+    
+    const {id}=req.params
+
+    // console.log(req.params)
+    const result=await ProductsService.deleteProductDb(id)
+    res.send({success:true,data:result})
+
+    
+
+    
+}
+const updateProduct:RequestHandler=async(req:Request,res:Response)=>{
+    
+    const {id}=req.params
+
+    // console.log(req.params)
+    console.log(req.body)
+   
+    const result=await ProductsService.updateProductDb(id,req.body)
+    res.send({success:true,data:result})
+
+    
+
+    
 }
 
 
+const addProduct:RequestHandler=async(req:Request,res:Response)=>{
+    
+    
+
+    // console.log(req.params)
+    console.log(req.body)
+   
+   
+    const result=await ProductsService.addProductDb(req.body)
+    res.send({success:true,data:result})
+
+    
+
+    
+}
 
 export const ProductsController={
     getAllProducts,
     getSingleProducts,
-    updateProductsQuantity
+    updateProductsQuantity,
+    deleteProduct,
+    updateProduct,
+    addProduct
 }
